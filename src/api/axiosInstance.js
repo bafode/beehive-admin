@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an Axios instance
 const axiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_APP_END_POINT + '/v1' || 'https://beehive-api.fr/v1'
+    baseURL:'https://beehive-api.fr/v1'
 });
 
 // Request interceptor
