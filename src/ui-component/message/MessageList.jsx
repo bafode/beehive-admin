@@ -295,62 +295,60 @@ const MessageList = () => {
                                     </TableCell>
                                 </TableRow>
                             ) : (
-                                stableSort(messages, getComparator(order, orderBy))
-                                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                    .map((message, index) => {
-                                        const isItemSelected = isSelected(message.id);
-                                        const labelId = `enhanced-table-checkbox-${index}`;
+                                messages.map((message, index) => {
+                                    const isItemSelected = isSelected(message.id);
+                                    const labelId = `enhanced-table-checkbox-${index}`;
 
-                                        return (
-                                            <TableRow
-                                                hover
-                                                role="checkbox"
-                                                aria-checked={isItemSelected}
-                                                tabIndex={-1}
-                                                key={message.id}
-                                                selected={isItemSelected}
-                                            >
-                                                <TableCell padding="checkbox">
-                                                    <Checkbox
-                                                        color="primary"
-                                                        checked={isItemSelected}
-                                                        onClick={(event) => handleClick(event, message.id)}
-                                                        inputProps={{ 'aria-labelledby': labelId }}
-                                                    />
-                                                </TableCell>
-                                                <TableCell component="th" id={labelId} scope="row" padding="none">
-                                                    {message.firstName || 'N/A'}
-                                                </TableCell>
-                                                <TableCell>{message.lastName || 'N/A'}</TableCell>
-                                                <TableCell>{message.email}</TableCell>
-                                                <TableCell>{truncateText(message.subject, 30)}</TableCell>
-                                                <TableCell>{truncateText(message.message, 50)}</TableCell>
-                                                <TableCell>{formatDate(message.createdAt)}</TableCell>
-                                                <TableCell>
-                                                    <Box sx={{ display: 'flex', gap: 1 }}>
-                                                        <Tooltip title="Voir le message">
-                                                            <IconButton
-                                                                size="small"
-                                                                color="primary"
-                                                                onClick={() => handleViewMessage(message)}
-                                                            >
-                                                                <IconEye size={18} />
-                                                            </IconButton>
-                                                        </Tooltip>
-                                                        <Tooltip title="Répondre par email">
-                                                            <IconButton
-                                                                size="small"
-                                                                color="secondary"
-                                                                onClick={() => handleSendEmail(message.email)}
-                                                            >
-                                                                <IconMail size={18} />
-                                                            </IconButton>
-                                                        </Tooltip>
-                                                    </Box>
-                                                </TableCell>
-                                            </TableRow>
-                                        );
-                                    })
+                                    return (
+                                        <TableRow
+                                            hover
+                                            role="checkbox"
+                                            aria-checked={isItemSelected}
+                                            tabIndex={-1}
+                                            key={message.id}
+                                            selected={isItemSelected}
+                                        >
+                                            <TableCell padding="checkbox">
+                                                <Checkbox
+                                                    color="primary"
+                                                    checked={isItemSelected}
+                                                    onClick={(event) => handleClick(event, message.id)}
+                                                    inputProps={{ 'aria-labelledby': labelId }}
+                                                />
+                                            </TableCell>
+                                            <TableCell component="th" id={labelId} scope="row" padding="none">
+                                                {message.firstName || 'N/A'}
+                                            </TableCell>
+                                            <TableCell>{message.lastName || 'N/A'}</TableCell>
+                                            <TableCell>{message.email}</TableCell>
+                                            <TableCell>{truncateText(message.subject, 30)}</TableCell>
+                                            <TableCell>{truncateText(message.message, 50)}</TableCell>
+                                            <TableCell>{formatDate(message.createdAt)}</TableCell>
+                                            <TableCell>
+                                                <Box sx={{ display: 'flex', gap: 1 }}>
+                                                    <Tooltip title="Voir le message">
+                                                        <IconButton
+                                                            size="small"
+                                                            color="primary"
+                                                            onClick={() => handleViewMessage(message)}
+                                                        >
+                                                            <IconEye size={18} />
+                                                        </IconButton>
+                                                    </Tooltip>
+                                                    <Tooltip title="Répondre par email">
+                                                        <IconButton
+                                                            size="small"
+                                                            color="secondary"
+                                                            onClick={() => handleSendEmail(message.email)}
+                                                        >
+                                                            <IconMail size={18} />
+                                                        </IconButton>
+                                                    </Tooltip>
+                                                </Box>
+                                            </TableCell>
+                                        </TableRow>
+                                    );
+                                })
                             )}
                         </TableBody>
                     </Table>
